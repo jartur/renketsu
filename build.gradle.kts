@@ -55,7 +55,10 @@ kotlin {
             dependencies {
                 implementation("io.ktor:ktor-server-netty:1.4.0")
                 implementation("io.ktor:ktor-html-builder:1.4.0")
+                implementation("io.ktor:ktor-jackson:1.4.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
+                implementation("com.arangodb:arangodb-java-driver:6.9.0")
+                implementation("ch.qos.logback:logback-classic:1.3.0-alpha5")
             }
         }
         val jvmTest by getting {
