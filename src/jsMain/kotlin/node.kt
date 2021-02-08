@@ -11,10 +11,11 @@ import react.dom.div
 import react.dom.input
 
 external interface NodeProps : RProps {
-    var name: String
+    var name: String?
+    var document: Any?
 }
 
-data class NodeState(val name: String) : RState
+data class NodeState(val name: String?) : RState
 
 @JsExport
 class Node(props: NodeProps) : RComponent<NodeProps, NodeState>(props) {
@@ -24,8 +25,11 @@ class Node(props: NodeProps) : RComponent<NodeProps, NodeState>(props) {
     }
 
     override fun RBuilder.render() {
-        div {
-            +"Imma child, ${props.name}"
+        div("nodeHeader") {
+            +(props.name ?: "N/A")
+        }
+        div("nodeBody") {
+            +JSON.stringify(props.document)
         }
     }
 }
