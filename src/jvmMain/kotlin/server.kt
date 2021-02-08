@@ -17,6 +17,7 @@ import kotlinx.html.*
 fun HTML.index() {
     head {
         title("Hello from Ktor!")
+        style { unsafe { raw(".node { border: black solid }") } }
     }
     body {
         div {
@@ -35,7 +36,6 @@ data class CollectionInfo(val info: BaseDocument?)
 
 
 fun main() {
-
     embeddedServer(Netty, port = 8080, host = "127.0.0.1") {
         install(ContentNegotiation) {
             jackson()

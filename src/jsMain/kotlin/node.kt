@@ -9,10 +9,11 @@ import react.RProps
 import react.RState
 import react.dom.div
 import react.dom.input
+import kotlin.js.Json
 
 external interface NodeProps : RProps {
     var name: String?
-    var document: Any?
+    var document: Json?
 }
 
 data class NodeState(val name: String?) : RState
@@ -25,11 +26,13 @@ class Node(props: NodeProps) : RComponent<NodeProps, NodeState>(props) {
     }
 
     override fun RBuilder.render() {
-        div("nodeHeader") {
-            +(props.name ?: "N/A")
-        }
-        div("nodeBody") {
-            +JSON.stringify(props.document)
+        div("node") {
+            div("nodeHeader") {
+                +(props.name ?: "N/A")
+            }
+            div("nodeBody") {
+                +JSON.stringify(props.document?.get("properties"))
+            }
         }
     }
 }
